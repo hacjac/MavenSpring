@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2015-10-20 20:46:11 by Hibernate Tools 3.5.0.Final -->
+<hibernate-mapping>
+    <class name="com.hwccy.MavenHibernate.entity.Customer" table="CUSTOMER">
+        <id name="id" type="long">
+            <column name="ID" />
+            <generator class="increment" />
+        </id>
+        <property name="name" type="java.lang.String">
+            <column name="NAME" />
+        </property>
+        <set name="set" table="ORDERS" inverse="true" cascade="all" lazy="true">
+            <key>
+                <column name="CUSTOMER_ID" />
+            </key>
+            <one-to-many class="com.hwccy.MavenHibernate.entity.Order" />
+        </set>
+    </class>
+</hibernate-mapping>

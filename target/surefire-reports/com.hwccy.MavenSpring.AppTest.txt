@@ -1,0 +1,8 @@
+-------------------------------------------------------------------------------
+Test set: com.hwccy.MavenSpring.AppTest
+-------------------------------------------------------------------------------
+Tests run: 1, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 2.825 sec <<< FAILURE!
+testApp(com.hwccy.MavenSpring.AppTest)  Time elapsed: 2.791 sec  <<< ERROR!
+java.lang.NullPointerException
+	at com.hwccy.MavenSpring.AppTest.testApp(AppTest.java:96)
+
