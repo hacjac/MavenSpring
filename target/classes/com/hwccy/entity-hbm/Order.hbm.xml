@@ -11,7 +11,7 @@
         <property name="orderNumber" type="java.lang.String" length="15">
             <column name="ORDERNUMBER" />
         </property>
-        <many-to-one name="customer" class="com.hwccy.MavenHibernate.entity.Customer" fetch="join">
+        <many-to-one name="customer" class="com.hwccy.MavenHibernate.entity.Customer" fetch="join" lazy="false">
             <column name="CUSTOMER_ID" />
         </many-to-one>
     </class>

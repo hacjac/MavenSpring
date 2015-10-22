@@ -2,8 +2,8 @@ com\hwccy\MavenHibernate\dao\impl\StudentDAOImpl.class
 com\hwccy\MavenSpring\entity\Car.class
 com\hwccy\MavenSpringHibernate\entity\Student.class
 com\hwccy\MavenHibernate\dao\OrderDAO.class
-com\hwccy\MavenHibernate\util\HibernateUtil.class
 com\hwccy\MavenHibernate\dao\impl\CustomerDAOImpl.class
+com\hwccy\MavenHibernate\util\HibernateUtil.class
 com\hwccy\MavenSpring\Test\App.class
 com\hwccy\MavenHibernate\entity\Student.class
 com\hwccy\MavenSpring\entity\Office.class
@@ -12,6 +12,6 @@ com\hwccy\MavenHibernate\entity\Customer.class
 com\hwccy\MavenSpring\entity\Boss.class
 com\hwccy\MavenHibernate\dao\impl\BaseDAOImpl.class
 com\hwccy\MavenHibernate\dao\StudentDAO.class
-com\hwccy\MavenHibernate\entity\Order.class
 com\hwccy\MavenHibernate\dao\CustomerDAO.class
+com\hwccy\MavenHibernate\entity\Order.class
 com\hwccy\MavenHibernate\dao\impl\OrderDAOImpl.class

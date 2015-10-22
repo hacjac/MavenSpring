@@ -1,25 +1,40 @@
 package com.hwccy.MavenHibernate.dao.impl;
 
+import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import org.hibernate.Query;
+import org.hibernate.Criteria;
 import org.hibernate.Session;
+import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
+import org.hibernate.criterion.Restrictions;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import com.hwccy.MavenHibernate.dao.BaseDAO;
-import com.hwccy.MavenHibernate.util.HibernateUtil;
 
-public class BaseDAOImpl<T> implements BaseDAO<T> {
+public abstract class BaseDAOImpl<T> implements BaseDAO<T> {
 
 	private Session session;
 	private Transaction transaction;
+	private SessionFactory sessionFactory;
+	
+	@Autowired
+	public void setSessionFactory(SessionFactory sessionFactory) {
+		this.sessionFactory = sessionFactory;
+	}
+	
+	public Session getSession() {
+		return sessionFactory.openSession();
+	}
+	
+	abstract Class<T> getEntityClass();
 	
 	public boolean save(T t) {
 		try {
-			session=HibernateUtil.getSessionFactory().openSession();
+			session=sessionFactory.openSession();
 			transaction=session.beginTransaction();
 			
 			session.save(t);
@@ -38,47 +53,27 @@ public class BaseDAOImpl<T> implements BaseDAO<T> {
 		}
 		return true;
 	}
-
-	//键值对的值是字符串时要用''包裹
-	public List<T> select(Map<String, Object> map,String name) {
+	
+	public List<T> select(Map<String, Object> map) {
+		Criteria criteria= getSession().createCriteria(getEntityClass());
 		List<T> list=null;
-		try {
-			session=HibernateUtil.getSessionFactory().openSession();
-			transaction=session.beginTransaction();
-			
-			String hql="from "+ name +" a";
-			Set<String> keys= map.keySet();
+		if (map!=null) {
 			if (!map.isEmpty()) {
-				hql+=" where";
-				Iterator<String> iterator=keys.iterator();
-				while (iterator.hasNext()) {
-					String key= iterator.next();
-					hql+=" a."+key+"=:"+key+" and";
-				}			
-				hql=hql.substring(0, hql.length()-4);
-			}
-			Query query=session.createQuery(hql);
-			if (!map.isEmpty()) {
+				Set<String> keys=map.keySet();
 				for (Iterator iterator = keys.iterator(); iterator.hasNext();) {
 					String key = (String) iterator.next();
-					query.setEntity(key, map.get(key));
+					Object value=map.get(key);
+					if (value instanceof Collection<?>) {
+						criteria.add(Restrictions.in(key, (Collection<?>)value));
+					}else if (value instanceof Object[]) {
+						criteria.add(Restrictions.in(key, (Object[]) value));
+					}else {
+						criteria.add(Restrictions.eq(key, value));
+					}
 				}
-			}
-			list=query.list();
-			
-			transaction.commit();
-			
-		} catch (Exception e) {
-			if (transaction!=null) {
-				transaction.rollback();
-			}
-			e.printStackTrace();
-		}finally {
-			if (session!=null) {
-				session.close();
+				list=criteria.list();
 			}
 		}
 		return list;
 	}
-
 }

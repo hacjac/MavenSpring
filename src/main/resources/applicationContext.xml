@@ -2,28 +2,71 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans
 	http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
 	http://www.springframework.org/schema/context
-	http://www.springframework.org/schema/context/spring-context-2.5.xsd">
+	http://www.springframework.org/schema/context/spring-context-2.5.xsd
+	http://www.springframework.org/schema/aop
+	http://www.springframework.org/schema/aop/spring-aop-2.5.xsd
+	http://www.springframework.org/schema/tx
+	http://www.springframework.org/schema/tx/spring-tx-2.5.xsd">
 
-	<!-- spring提供的读取配置信息的类 -->
-	<bean class=
-	"org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
-		<property name="systemPropertiesModeName" value="SYSTEM_PROPERTIES_MODE_OVERRIDE"></property>
-		<property name="ignoreResourceNotFound" value="true"></property>
-		<property name="locations">
+	<context:component-scan base-package="com.hwccy">
+	</context:component-scan>
+	<context:annotation-config></context:annotation-config>
+	
+	<bean id="dataSource" class="com.jolbox.bonecp.BoneCPDataSource" destroy-method="close">
+		<property name="driverClass" value="com.mysql.jdbc.Driver"></property>
+        <property name="password" value="wsadudlr2846"></property>
+        <property name="jdbcUrl" value="jdbc:mysql://localhost:3306/hibernatestudy"></property>
+        <property name="username" value="root"></property>
+	</bean>
+	
+	<bean id="sessionFactory" class="org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean">
+		<property name="dataSource" ref="dataSource"></property>
+		<property name="mappingResources">
 			<list>
-				<value>classpath:/application.properties</value>
+			<value>com/hwccy/entity-hbm/Student.hbm.xml</value>
+			<value>com/hwccy/entity-hbm/Customer.hbm.xml</value>
+			<value>com/hwccy/entity-hbm/Order.hbm.xml</value>
 			</list>
 		</property>
+		<property name="hibernateProperties">
+			<value>
+				hibernate.dialect=org.hibernate.dialect.MySQL5Dialect
+			</value>
+		</property>
 	</bean>
-	<!-- LargeObjectHandler，处理二进制字段和大文本字段 -->
-	<bean id="lobHandler" class="org.springframework.jdbc.support.lob"></bean>
-	<bean id="nativeJdbcExtractor" class=
-	"org.springframework.jdbc.support.nativejdbc.CommonsDbcpNativeJdbcExtractor" lazy-init="true"></bean>
 	
+	<bean id="transactionManager" class="org.springframework.orm.hibernate3.HibernateTransactionManager">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	
+	<aop:aspectj-autoproxy />
+	<tx:annotation-driven transaction-manager="transactionManager" />
+	<bean id="transactionInterceptor"
+		class="org.springframework.transaction.interceptor.TransactionInterceptor">
+		<property name="transactionManager">
+			<ref bean="transactionManager" />
+		</property>
+		<!-- 配置事务属性 -->
+		<property name="transactionAttributes">
+			<props>
+				<prop key="delete*">PROPAGATION_REQUIRED</prop>
+				<prop key="add*">PROPAGATION_REQUIRED</prop>
+				<prop key="update*">PROPAGATION_REQUIRED</prop>
+				<prop key="save*">PROPAGATION_REQUIRED</prop>
+				<prop key="find*">PROPAGATION_REQUIRED,readOnly</prop>
+				<prop key="get*">PROPAGATION_REQUIRED,readOnly</prop>
+				<prop key="*">PROPAGATION_REQUIRED</prop>
+			</props>
+		</property>
+	</bean>
 
+
+	
 	<bean id="office" class="com.hwccy.MavenSpring.entity.Office">
 		<property name="officeNo" value="000"></property>
 	</bean>
@@ -38,7 +81,4 @@
 		<property name="price" value="1000000"></property>
 		<property name="brand" value="GBenz"></property>
 	</bean>
-	<context:component-scan base-package="com.hwccy.MavenSpring.entity">
-		<context:include-filter type="regex" expression="com\.hwccy\..entity"/>
-	</context:component-scan>
 </beans>

@@ -14,7 +14,13 @@ public class StudentDAOImpl extends BaseDAOImpl<Student> implements StudentDAO {
 	}
 
 	public List<Student> select(Map<String, Object> map) {
-		return super.select(map, "Student");
+		return super.select(map);
+	}
+
+	@Override
+	Class<Student> getEntityClass() {
+		// TODO Auto-generated method stub
+		return Student.class;
 	}
 
 }

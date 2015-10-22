@@ -8,6 +8,7 @@ import java.util.Map;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import com.hwccy.MavenHibernate.dao.CustomerDAO;
 import com.hwccy.MavenHibernate.dao.OrderDAO;
@@ -66,7 +67,7 @@ public class AppTest
 			Student student2 = (Student) iterator.next();
 			System.out.println(student2);
 		}*/
-    	Customer customer=new Customer();
+    	/*Customer customer=new Customer();
     	Order order=new Order();
     	Order order2=new Order();
     	order.setOrderNumber("111");
@@ -79,7 +80,7 @@ public class AppTest
     	CustomerDAO customerDAO=new CustomerDAOImpl();
     	customerDAO.save(customer);
     	Map<String, Object> map=new HashMap<String,Object>();
-    	map.put("name", "'000'");
+    	map.put("name", "000");
     	
     	Order order3=new Order();
     	order3.setOrderNumber("333");
@@ -100,7 +101,7 @@ public class AppTest
     	for (Iterator iterator = lis.iterator(); iterator.hasNext();) {
 			Order order4 = (Order) iterator.next();
 			System.out.println(order4);
-		}
+		}*/
         assertTrue( true );
     }
 }

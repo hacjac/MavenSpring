@@ -1,13 +1,10 @@
 package com.hwccy.MavenHibernate.util;
 
-import org.hibernate.SessionFactory;
-import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
-import org.hibernate.cfg.Configuration;
-import org.hibernate.service.ServiceRegistry;
+
 
 public class HibernateUtil {
 
-	private static Configuration configuration;
+	/*private static Configuration configuration;
 	private static SessionFactory sessionFactory;
 	static{
 		configuration=new Configuration().configure("hibernate.cfg.xml");
@@ -22,6 +19,6 @@ public class HibernateUtil {
 	public static SessionFactory getSessionFactory() {
 		return sessionFactory;
 	}
-	
+	*/
 	
 }

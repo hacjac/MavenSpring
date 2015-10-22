@@ -15,7 +15,13 @@ public class OrderDAOImpl extends BaseDAOImpl<Order> implements OrderDAO {
 
 	public List<Order> select(Map<String, Object> map) {
 		// TODO Auto-generated method stub
-		return super.select(map, "Order");
+		return super.select(map);
+	}
+
+	@Override
+	Class<Order> getEntityClass() {
+		// TODO Auto-generated method stub
+		return Order.class;
 	}
 
 }

@@ -33,7 +33,7 @@ public class Customer implements Serializable {
 		this.set = set;
 	}
 	public String toString2() {
-		return "Customer [id=" + id + ", name=" + name + ", set=" + set + "]";
+		return "Customer [id=" + id + ", name=" + name  + "]";
 	}
 	
 

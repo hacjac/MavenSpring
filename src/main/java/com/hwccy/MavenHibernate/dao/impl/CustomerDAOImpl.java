@@ -15,7 +15,13 @@ public class CustomerDAOImpl extends BaseDAOImpl<Customer> implements CustomerDA
 
 	public List<Customer> select(Map<String, Object> map) {
 		// TODO Auto-generated method stub
-		return super.select(map, "Customer");
+		return super.select(map);
+	}
+
+	@Override
+	Class<Customer> getEntityClass() {
+		// TODO Auto-generated method stub
+		return Customer.class;
 	}
 
 }

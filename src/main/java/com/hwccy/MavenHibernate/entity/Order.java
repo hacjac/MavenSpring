@@ -30,7 +30,7 @@ public class Order implements Serializable{
 	}
 	@Override
 	public String toString() {
-		return "Order [id=" + id + ", orderNumber=" + orderNumber + ", customer=" + customer + "]";
+		return "Order [id=" + id + ", orderNumber=" + orderNumber + ", customer=" + customer.toString2() + "]";
 	}
 	
 	
