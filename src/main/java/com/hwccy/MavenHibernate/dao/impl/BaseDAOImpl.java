@@ -71,9 +71,9 @@ public abstract class BaseDAOImpl<T> implements BaseDAO<T> {
 						criteria.add(Restrictions.eq(key, value));
 					}
 				}
-				list=criteria.list();
 			}
 		}
+		list=criteria.list();
 		return list;
 	}
 }

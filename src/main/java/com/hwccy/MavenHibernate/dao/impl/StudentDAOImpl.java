@@ -3,9 +3,12 @@ package com.hwccy.MavenHibernate.dao.impl;
 import java.util.List;
 import java.util.Map;
 
+import org.springframework.stereotype.Repository;
+
 import com.hwccy.MavenHibernate.dao.StudentDAO;
 import com.hwccy.MavenHibernate.entity.Student;
 
+@Repository
 public class StudentDAOImpl extends BaseDAOImpl<Student> implements StudentDAO {
 
 	public boolean save(Student t) {

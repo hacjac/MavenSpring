@@ -3,9 +3,12 @@ package com.hwccy.MavenHibernate.dao.impl;
 import java.util.List;
 import java.util.Map;
 
+import org.springframework.stereotype.Repository;
+
 import com.hwccy.MavenHibernate.dao.OrderDAO;
 import com.hwccy.MavenHibernate.entity.Order;
 
+@Repository
 public class OrderDAOImpl extends BaseDAOImpl<Order> implements OrderDAO {
 
 	public boolean save(Order t) {

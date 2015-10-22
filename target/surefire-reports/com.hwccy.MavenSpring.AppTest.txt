@@ -1,11 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: com.hwccy.MavenSpring.AppTest
 -------------------------------------------------------------------------------
-Tests run: 1, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 0.095 sec <<< FAILURE!
-testApp(com.hwccy.MavenSpring.AppTest)  Time elapsed: 0.067 sec  <<< ERROR!
-java.lang.NullPointerException
-	at com.hwccy.MavenHibernate.dao.impl.BaseDAOImpl.getSession(BaseDAOImpl.java:30)
-	at com.hwccy.MavenHibernate.dao.impl.BaseDAOImpl.select(BaseDAOImpl.java:58)
-	at com.hwccy.MavenHibernate.dao.impl.OrderDAOImpl.select(OrderDAOImpl.java:18)
-	at com.hwccy.MavenSpring.AppTest.testApp(AppTest.java:95)
-
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.009 sec

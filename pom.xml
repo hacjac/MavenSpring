@@ -6,7 +6,7 @@
 	<groupId>com.hwccy</groupId>
 	<artifactId>MavenSpring</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<packaging>jar</packaging>
+	<packaging>war</packaging>
 
 	<name>MavenSpring</name>
 	<url>http://maven.apache.org</url>
@@ -97,6 +97,16 @@
 		<artifactId>spring-web</artifactId>
 		<version>4.1.4.RELEASE</version>
 	</dependency>
+	<dependency>
+		<groupId>org.springframework</groupId>
+		<artifactId>spring-webmvc</artifactId>
+		<version>4.1.4.RELEASE</version>
+	</dependency>
+	<dependency>
+		<groupId>javax.servlet</groupId>
+		<artifactId>servlet-api</artifactId>
+		<version>3.0-alpha-1</version>
+	</dependency>
 	</dependencies>
 	<build>
 		<plugins>
@@ -124,6 +134,16 @@
           </execution>
         </executions>
       </plugin>
+			<plugin>
+				<groupId>org.mortbay.jetty</groupId>
+				<artifactId>jetty-maven-plugin</artifactId>
+				<version>8.1.8.v20121106</version>
+				<configuration>
+					<webAppConfig>
+						<contextPath>/MavenSprHib</contextPath>
+					</webAppConfig>
+				</configuration>
+			</plugin>
 		</plugins>
 	</build>
 </project>
