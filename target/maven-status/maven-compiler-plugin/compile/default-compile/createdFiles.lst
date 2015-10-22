@@ -13,6 +13,7 @@ com\hwccy\MavenHibernate\dao\OrderDAO.class
 com\hwccy\MavenHibernate\dao\impl\CustomerDAOImpl.class
 com\hwccy\MavenHibernate\util\HibernateUtil.class
 com\hwccy\MavenSpring\Test\App.class
+com\hwccy\MavenHibernate\controller\UploadController.class
 com\hwccy\MavenHibernate\controller\StudentController.class
 com\hwccy\MavenHibernate\service\StudentService.class
 com\hwccy\MavenHibernate\entity\Customer.class
