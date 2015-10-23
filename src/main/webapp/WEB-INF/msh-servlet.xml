@@ -10,6 +10,39 @@
 	default-lazy-init="false">
 
 	<context:component-scan base-package="com.hwccy"></context:component-scan>
+	
+	<bean id="freemarkerConfig"
+		class="org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer">
+		<property name="templateLoaderPath" value="/" />
+		<property name="defaultEncoding" value="UTF-8" />
+		<property name="freemarkerSettings">
+			<props>
+				<prop key="template_update_delay">0</prop>
+				<prop key="defaultEncoding">UTF-8</prop>
+				<prop key="url_escaping_charset">UTF-8</prop>
+				<prop key="locale">zh_CN</prop>
+				<prop key="boolean_format">true,false</prop>
+				<prop key="datetime_format">yyyy-MM-dd HH:mm:ss</prop>
+				<prop key="date_format">yyyy-MM-dd</prop>
+				<prop key="time_format">HH:mm:ss</prop>
+				<prop key="number_format">0.######</prop>
+				<prop key="whitespace_stripping">true</prop>
+				<!-- <prop key="classic_compatible">true</prop> -->
+			</props>
+		</property>
+	</bean>
 
-	<!-- 如果不定义mappingURL，则默认拦截所有对Controller的请求 ; 可以使用正则表达式对url进行匹配，从而更细粒度的进行拦截(.*/entryOrJsonController\.do\?action=reg.*); -->
+	<bean id="freemarkerViewResolver" class="org.springframework.web.servlet.view.freemarker.FreeMarkerViewResolver">
+		<property name="viewClass" value="org.springframework.web.servlet.view.freemarker.FreeMarkerView"></property>
+		<property name="cache" value="true" />
+		<property name="prefix" value="/html/" />
+		<property name="suffix" value=".html" />
+		<property name="contentType" value="text/html;charset=UTF-8" />
+		<property name="requestContextAttribute" value="request" />
+		<property name="exposeRequestAttributes" value="true" />
+		<property name="exposeSessionAttributes" value="true" />
+		<property name="exposeSpringMacroHelpers" value="true" />
+	</bean>
+	
+	
 </beans>

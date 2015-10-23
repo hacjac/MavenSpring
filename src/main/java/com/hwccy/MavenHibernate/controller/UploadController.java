@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public class UploadController {
 	
 	@RequestMapping(value="/file/upload",method=RequestMethod.POST)
-	public void upload(HttpServletRequest request) {
+	public String upload(HttpServletRequest request) {
 		DiskFileItemFactory factory=new DiskFileItemFactory();
 		ServletFileUpload upload=new ServletFileUpload(factory);
 		try {
@@ -37,6 +37,7 @@ public class UploadController {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		return "msg";
 	}
 	
 }
